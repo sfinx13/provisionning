@@ -17,6 +17,11 @@ apt-get install language-pack-fr
 echo "LC_ALL=fr_FR.UTF-8" >> /etc/default/locale
 locale-gen fr_FR.UTF-8
 
+# software-properties-common: Provides an abstraction of the used apt repositories. 
+# It allows you to easily manage your distribution and independent software vendor software sources.
+# Without it, you would need to add and remove repositories (such as PPAs) manually 
+# by editing /etc/apt/sources.list and/or any subsidiary files in /etc/apt/sources.list.d
+
 apt-get install -y software-properties-common curl sudo
 
 # Install Some PPAs
@@ -35,8 +40,11 @@ source ~/.profile
 nvm install node
 
 # Install Some Basic Packages
-apt-get install -y build-essential dos2unix gcc git git-lfs libmcrypt4 libpcre3-dev libpng-dev chrony unzip make \
-python3-pip re2c unattended-upgrades whois vim libnotify-bin pv mcrypt bash-completion net-tools procps
+apt-get install -y build-essential dos2unix wget gcc git git-lfs libmcrypt4 libpcre3-dev libpng-dev chrony unzip make \
+re2c unattended-upgrades whois vim libnotify-bin pv mcrypt bash-completion net-tools procps jq
+
+# Install Python
+apt-get install -y python3-pip libssl-dev libffi-dev python3-dev python3-venv python-is-python3
 
 # Set My Timezone
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
@@ -161,11 +169,6 @@ service mysql restart
 apt-get install -y redis-server memcached
 systemctl enable redis-server
 service redis-server start
-
-# Install wp-cli
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
 
 mkdir -p /run/php/
 touch /run/php/php8.1-fpm.sock
