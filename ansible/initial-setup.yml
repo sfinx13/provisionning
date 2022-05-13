@@ -1,0 +1,67 @@
+---
+- name: Initial Setup
+  hosts: node-1
+  remote_user: root
+
+  tasks:    
+     - name: Add SSH key for root
+       lineinfile:
+         path: ~/.ssh/authorized_keys
+         create: yes
+         state: present
+         line: # add public keys
+     
+     - name: Install Language package fr
+       apt:
+         name: language-pack-fr
+         state: present
+
+     - name: Ensure the locale exists
+       locale_gen:
+         name: fr_FR.UTF-8
+         state: present
+         
+     - name: Set fr_FR.UTF-8 as default locale
+       lineinfile:
+         path: /etc/default/locale
+         create: yes
+         state: present
+         line: LC_ALL=fr_FR.UTF-8
+     
+     - name: Update all packages
+       apt:
+          update_cache: yes
+          name: '*'
+          force_apt_get: yes
+          state: latest
+       when: ansible_facts['os_family'] == 'Debian'
+      
+     - name: Install some basic packages
+       package:
+          name: "{{packages}}"
+          state: present
+       vars:
+          packages:
+             - gcc
+             - make
+             - build-essential 
+             - dos2unix 
+             - wget 
+             - git 
+             - git-lfs 
+             - libmcrypt4 
+             - libpcre3-dev 
+             - libpng-dev 
+             - chrony 
+             - unzip 
+             - re2c 
+             - unattended-upgrades 
+             - whois 
+             - vim 
+             - libnotify-bin 
+             - pv 
+             - mcrypt 
+             - bash-completion 
+             - net-tools 
+             - procps 
+             - jq
