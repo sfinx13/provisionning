@@ -21,7 +21,7 @@ $ docker run -dit --rm -p 22:22 --name http-node-1 node-ssh
 
 ### Execute playbook
 ```
-ansible-playbook 6V -i inventory.ini initial-setup.yml
+ansible-playbook -v -i inventory.ini initial-setup.yml
 ```
 
 ## @TODO 
