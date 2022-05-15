@@ -15,13 +15,15 @@ The objective is to test the playbook ansible, we will use a container as node
 Provision the node with ssh enabled cause ansible node manager communicate with nodes in ssh
 
 ```bash
-$ docker build -f ansible/Dockerfile -t node-ssh
+$ docker build -f ansible/Dockerfile -t node-ssh .
 $ docker run -dit --rm -p 22:22 --name http-node-1 node-ssh
 ```
 
 ### Execute playbook
 ```
 ansible-playbook -v -i inventory.ini initial-setup.yml
+ansible-playbook -v -i inventory.ini install-sqlite.yml
+ansible-playbook -v -i inventory.ini install-python.yml
 ```
 
 ## @TODO 

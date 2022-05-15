@@ -43,6 +43,9 @@ nvm install node
 apt-get install -y build-essential dos2unix wget gcc git git-lfs libmcrypt4 libpcre3-dev libpng-dev chrony unzip make \
 re2c unattended-upgrades whois vim libnotify-bin pv mcrypt bash-completion net-tools procps jq
 
+# Install SQLite
+apt-get install -y sqlite3 libsqlite3-dev
+
 # Install Python
 apt-get install -y python3-pip libssl-dev libffi-dev python3-dev python3-venv python-is-python3
 
@@ -122,8 +125,6 @@ usermod -a -G www-data $username
 id $username
 groups $username
 
-# Install SQLite
-apt-get install -y sqlite3 libsqlite3-dev
 
 # Install MySQL
 echo "mysql-server mysql-server/root_password password secret" | debconf-set-selections
