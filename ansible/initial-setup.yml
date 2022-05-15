@@ -9,17 +9,17 @@
          path: ~/.ssh/authorized_keys
          create: yes
          state: present
-         line:  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtI2iRY5yhqFFtQNgNozkjYg9xdI4YACzzcJeh+0kLojH/efl+TYg8t/WufN9Ux8tJrGx1r/ZTKoOR/cv21brypXQccQdSIzCag+IHX7NvFQsKsyer7aD6oqJ+mWMyjJzwhkt1Je3awjGrQ9ETcffxELi40Mreqz6cipEBjN31Pkjy8te1N3D5u83kJGWOO4g51t0IR3GLpz6Q+bmAMcSWBteJ6yjb2oBCgIbz/r/EZUG/+2UKiDbYclNiT5/ePHU8cmU7CwwNm7TxAYjYQE/6w6WsC9CCPzIGD24dYUXx9P8Fuh8xxqmtxMlSqVavv8gHvjVPObnUdNDtDx0y8eybWxKZUDRBWEpRlDyCCCfTEnjOzR2vgepKw1v426RsvL+HtGhZobU8CPLPJtYHhoNl1vpkviQbDxJNnymTAT8qCZ8SZ6l0xSjQzu2lfk75DbrZdOn46WJbByWE5PbPRlq7kHylUtyd3XZo5W44MhBhc/xgmSOfu42UuB9EXKPZBGM= sahamada@DESKTOP-K8G045V
+         # line: 
      
      - name: Install Language package fr
        apt:
          name: language-pack-fr
          state: present
 
-    #  - name: Ensure the locale exists
-    #    locale_gen:
-    #      name: fr_FR.UTF-8
-    #      state: present
+     - name: Ensure the locale exists
+       locale_gen:
+         name: fr_FR.UTF-8
+         state: present
          
      - name: Set fr_FR.UTF-8 as default locale
        lineinfile:
