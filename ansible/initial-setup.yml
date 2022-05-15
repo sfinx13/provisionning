@@ -9,7 +9,7 @@
          path: ~/.ssh/authorized_keys
          create: yes
          state: present
-         # line: add ssh public key
+         line: "{{lookup('file', '~/.ssh/id_rsa.pub')}}"
      
      - name: Install Language package fr
        apt:
