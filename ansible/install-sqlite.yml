@@ -1,0 +1,7 @@
+---
+- name: Install SQLite
+  hosts: node-1
+  remote_user: root
+  roles:
+    - { role: "sqlite" }
+   

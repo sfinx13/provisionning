@@ -1,0 +1,10 @@
+---
+
+- name: Install packages for SQLite
+  package:
+    name: "{{packages}}"
+    state: present
+  vars:
+    packages:
+      - sqlite3 
+      - libsqlite3-dev
