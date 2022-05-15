@@ -3,13 +3,13 @@
   hosts: node-1
   remote_user: root
 
-  tasks:    
+  tasks:
      - name: Add SSH key for root
        lineinfile:
          path: ~/.ssh/authorized_keys
          create: yes
          state: present
-         # line: 
+         # line: add ssh public key
      
      - name: Install Language package fr
        apt:
@@ -36,6 +36,10 @@
           state: latest
        when: ansible_facts['os_family'] == 'Debian' # ansible_facts are data related to remote system
       
+     - name: Set UTC Timezone
+       timezone:
+         hwclock: UTC
+
      - name: Install some basic packages
        package:
           name: "{{packages}}"
