@@ -4,7 +4,7 @@
 The objective is to test the bash script, we will use container
 
 ```bash
-$ docker build -f bash/Dockerfile -t provision-bash .
+$ docker build -f bash/Dockerfile -t provision-bash bash    
 $ docker run -it --rm --name test-provision provision-bash 
 ```
 
