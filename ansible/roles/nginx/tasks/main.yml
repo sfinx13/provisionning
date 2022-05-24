@@ -1,0 +1,9 @@
+---
+
+- name: Install nginx  
+  apt:
+    name: nginx
+    state: latest
+  changed_when: yes
+  notify:
+    - nginx restart

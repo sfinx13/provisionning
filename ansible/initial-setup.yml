@@ -68,3 +68,6 @@
              - net-tools #  includes the important tools for controlling the network subsystem
              - procps # provides command-line and full-screen mode utilities for navigating procfs
              - jq # is like sed for JSON data, useful to slice, filter and map and transform structured data
+             - ca-certificates # Contains the certificate authorities shipped with Mozilla's browser to allow SSL-based applications to check for the authenticity of SSL connections.
+             - apt-transport-https # APT's transport for downloading over HTTPS
+             - software-properties-common #  provides an abstraction of the used apt repositories
