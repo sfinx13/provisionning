@@ -1,0 +1,12 @@
+---
+
+- name: Set nginx user
+  ansible.builtin.lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: "user www-data;", line: "user {{ username }};" }
+    - { regexp: "# server_names_hash_bucket_size.*", line: "server_names_hash_bucket_size 64;" }
+  notify:
+    - nginx restart

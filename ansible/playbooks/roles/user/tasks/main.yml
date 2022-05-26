@@ -1,0 +1,20 @@
+---
+
+- name: Generate random password
+  ansible.builtin.set_fact:
+    password: "{{ lookup('password', 'passwords length=8 chars=ascii_letters,digits') }}"
+
+- name: Create a group
+  ansible.builtin.group:
+    name: "{{ username }}"
+    state: present
+
+- name: Create a user {{ username }}
+  ansible.builtin.user:
+    name: "{{ username }}"
+    group: "{{ username }}"
+    password: "{{ password | password_hash('sha512') }}"
+    shell: /bin/bash
+    groups: sudo
+    create_home: true
+    append: true

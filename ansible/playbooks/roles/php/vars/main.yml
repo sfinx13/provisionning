@@ -1,0 +1,22 @@
+---
+version: 8.1
+username: jdoe
+xdebug_config_filename: 20-xdebug.ini
+symbolic_links:
+  php: "/usr/bin/php{{ version }}"
+  php-config: "/usr/bin/php-config{{ version }}"
+  phpize: "/usr/bin/phpize{{ version }}"
+directives:
+  cli:
+    error_reporting: "E_ALL"
+    display_errors: "On"
+    memory_limit: "512M"
+    date.timezone: "UTC"
+  fpm:
+    error_reporting: "E_ALL"
+    display_errors: "On"
+    cgi.fix_pathinfo: 0
+    memory_limit: "512M"
+    upload_max_filesize: "100M"
+    post_max_size: "100M"
+    date.timezone: "UTC"

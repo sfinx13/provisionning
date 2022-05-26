@@ -1,7 +1,0 @@
----
-- name: Install PHP
-  hosts: all
-  remote_user: root
-  roles:
-    - { role: "php" }
-   

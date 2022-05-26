@@ -1,0 +1,10 @@
+---
+- name: "restart redis"
+  ansible.builtin.service:
+    name: "redis"
+    state: "restarted"
+
+- name: "enable redis"
+  ansible.builtin.service:
+    name: "redis"
+    enabled: true

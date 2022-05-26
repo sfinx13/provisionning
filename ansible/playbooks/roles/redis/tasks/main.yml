@@ -1,0 +1,17 @@
+---
+
+- name: Install Redis repository
+  ansible.builtin.apt_repository:
+    repo: "ppa:chris-lea/redis-server"
+
+- name: Update repository
+  ansible.builtin.package:
+    update_cache: true
+
+- name: Install Redis
+  ansible.builtin.package:
+    name: redis-server
+    state: present
+
+- name: Include redis task
+  include_tasks: secure-redis.yml

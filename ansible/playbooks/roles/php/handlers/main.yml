@@ -1,0 +1,6 @@
+---
+
+- name: "php-fpm restart"
+  ansible.builtin.service:
+    name: "php{{ version }}-fpm"
+    state: "restarted"

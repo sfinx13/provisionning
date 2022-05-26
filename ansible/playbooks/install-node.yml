@@ -1,0 +1,7 @@
+---
+
+- name: Install npm and node
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: "node" }

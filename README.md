@@ -22,11 +22,7 @@ $ docker run -dit --rm -p 22:22 --name http-node-1 node-ssh
 ### Execute playbook
 ```
 $ cd ansible
-$ ansible-playbook -v -i inventory.ini initial-setup.yml
-$ ansible-playbook -v -i inventory.ini install-sqlite.yml
-$ ansible-playbook -v -i inventory.ini install-python.yml
-$ ansible-playbook -v -i inventory.ini install-nginx.yml
-$ ansible-playbook -v -i inventory.ini install-php.yml
+$ ./play.sh
 ```
 
 ## @TODO 

@@ -1,6 +1,0 @@
----
-
-- name: "php-fpm restart"
-  service:
-     name: "php-fpm"
-     state: "restarted"

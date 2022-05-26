@@ -1,0 +1,6 @@
+---
+
+- name: Install memcached
+  ansible.builtin.package:
+    name: memcached
+    state: present

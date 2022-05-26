@@ -1,0 +1,19 @@
+---
+
+- name: Uninstall Nginx
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: "Stop Nginx service"
+      ansible.builtin.service:
+        name: nginx
+        state: stopped
+
+    - name: "Remove Nginx package"
+      ansible.builtin.apt:
+        name: nginx
+        state: absent
+
+    - name: Remove dependencies that are no longer required
+      ansible.builtin.apt:
+        autoremove: true

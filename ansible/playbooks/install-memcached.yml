@@ -1,0 +1,6 @@
+---
+- name: Install Memcached
+  hosts: all
+  remote_user: root
+  roles:
+    - {role: "memcached"}

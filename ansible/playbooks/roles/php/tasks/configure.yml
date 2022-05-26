@@ -1,0 +1,15 @@
+---
+
+- name: Configure PHP-FPM
+  ansible.builtin.lineinfile:
+    dest: "/etc/php/8.1/fpm/pool.d/www.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: "user = www-data", line: "user = {{ username }}" }
+    - { regexp: "group = www-data", line: "group = {{ username }}" }
+    - { regexp: "listen.owner.*", line: "listen.owner = {{ username }}" }
+    - { regexp: "listen.group.*", line: "listen.group = {{ username }}" }
+    - { regexp: ";listen.mode.*", line: "listen.mode = 0666" }
+  notify:
+    - php-fpm restart

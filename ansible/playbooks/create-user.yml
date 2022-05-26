@@ -1,0 +1,7 @@
+---
+
+- name: Create user
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: user }

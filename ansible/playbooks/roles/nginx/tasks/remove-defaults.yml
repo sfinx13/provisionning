@@ -1,0 +1,11 @@
+---
+
+- name: Disable the default site
+  ansible.builtin.file:
+    path: "{{ nginx_conf_dir }}/{{ item }}/default"
+    state: absent
+  notify:
+    - nginx reload
+  with_items:
+    - sites-enabled
+    - sites-available

@@ -1,0 +1,9 @@
+---
+
+- name: Install Nginx
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: "nginx" }
+  vars:
+    username: jdoe

@@ -1,0 +1,7 @@
+---
+
+- name: Install SQLite
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: "sqlite" }

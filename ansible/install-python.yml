@@ -1,7 +1,0 @@
----
-- name: Install Python
-  hosts: node-1
-  remote_user: root
-  roles:
-    - { role: "python3" }
-   

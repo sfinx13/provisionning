@@ -1,0 +1,11 @@
+---
+
+- name: Secure redis with a password
+  ansible.builtin.lineinfile:
+    dest: /etc/redis/redis.conf
+    regex: '^(# )?requirepass \w*$'
+    line: 'requirepass {{ redis_password }}'
+    state: present
+  notify:
+    - restart Redis
+    - enable Redis
