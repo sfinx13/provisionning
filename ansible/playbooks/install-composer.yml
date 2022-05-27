@@ -1,0 +1,6 @@
+---
+- name: Install and download composer
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: "composer" }
