@@ -1,2 +1,3 @@
 ansible/
 passwords
+playbooks/passwords
