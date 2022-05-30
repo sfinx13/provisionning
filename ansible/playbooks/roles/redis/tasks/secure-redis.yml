@@ -7,5 +7,5 @@
     line: 'requirepass {{ redis_password }}'
     state: present
   notify:
-    - restart Redis
-    - enable Redis
+    - restart redis
+    - enable redis

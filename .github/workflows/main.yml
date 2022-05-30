@@ -20,6 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible-lint
           ansible-galaxy collection install community.general
+          ansible-galaxy collection install community.mysql
           
       - name: Display version
         run: ansible-lint --version
