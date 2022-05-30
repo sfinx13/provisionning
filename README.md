@@ -50,7 +50,7 @@ $ ./play.sh
 ### Service management modules
 - [service](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html)
 
-### Local management module
+### Local management modules
 - [community.general.locale_gen](https://docs.ansible.com/ansible/latest/collections/community/general/locale_gen_module.html)
 - [community.general.timezone](https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html)
 
