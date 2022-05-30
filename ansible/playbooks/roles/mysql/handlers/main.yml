@@ -1,0 +1,13 @@
+---
+
+- name: mysql restart
+  ansible.builtin.service:
+    name: mysql
+    state: restarted
+
+- name: "timezone add"
+  tags: [timezone-update]
+  ansible.builtin.shell: >
+     set -o pipefail && mysql_tzinfo_to_sql /usr/share/zoneinfo \
+      | mysql --user=root --password={{ password }} mysql
+  when: timezone_info.changed

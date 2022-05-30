@@ -1,0 +1,7 @@
+---
+
+- name: Install mysql
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: "mysql" }

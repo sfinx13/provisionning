@@ -1,0 +1,121 @@
+---
+
+- name: Generate random password
+  ansible.builtin.set_fact:
+    password: "{{ lookup('password', 'passwords length=8 chars=ascii_letters,digits') }}"
+  no_log: true
+
+- name: Install mysql dependencies.
+  ansible.builtin.package:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - apt-utils
+      - python3-mysqldb
+
+- name: Install MySQL
+  ansible.builtin.package:
+    name: "mysql-server"
+    state: present
+    update_cache: true
+
+- name: Add .my.cnf to user home
+  ansible.builtin.template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    mode: '0744'
+
+- name: Configure MySQL Remote Access
+  ansible.builtin.lineinfile:
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: "^bind-address/s/bind-address.*=.*"
+    line: "bind-address = 0.0.0.0"
+  changed_when: true
+  notify: mysql restart
+
+# @TODO need this hack cause notify does not trigger 
+- name: Restart service
+  ansible.builtin.command: service mysql restart
+
+- name: Update root password
+  community.mysql.mysql_user:
+    login_user: root
+    login_password: "{{ password }}"
+    name: root
+    password: "{{ password }}"
+    state: present
+  with_items:
+    - localhost
+    - 127.0.0.1
+    - ::1
+
+- name: Reload privilege tables
+  ansible.builtin.command: |
+    mysql -p{{ password }} -ne "{{ item }}"
+  with_items:
+    - FLUSH PRIVILEGES
+  changed_when: false
+  no_log: true
+
+- name: Remove test database and access to it
+  ansible.builtin.command: |
+    mysql -p{{ password }} -ne "{{ item }}"
+  with_items:
+    - DROP DATABASE IF EXISTS test
+    - DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+  changed_when: false
+  no_log: true
+
+- name: Reload privilege tables
+  ansible.builtin.command: |
+    mysql -p{{ password }} -ne "{{ item }}"
+  with_items:
+    - FLUSH PRIVILEGES
+  changed_when: false
+  no_log: true
+
+- name: Create user with password, all database privileges
+  community.mysql.mysql_user:
+    login_user: root
+    login_password: "{{ password }}"
+    state: present
+    name: "{{ username }}"
+    password: "{{ password }}"
+    priv:
+      '*.*': 'ALL,GRANT'
+
+- name: Create database
+  community.mysql.mysql_db:
+    login_user: "{{ username }}"
+    login_password: "{{ password }}"
+    name: "{{ username }}"
+    state: present
+    encoding: utf8
+
+- name: Configure MySQL for {{ username }}
+  ansible.builtin.blockinfile:
+    path: /home/{{ username }}/.my.cnf
+    create: true
+    mode: '0755'
+    block: |
+      [mysqld]
+      character-set-server=utf8mb4
+      collation-server=utf8mb4_bin
+
+- name: Update timezone info
+  tags: [timezone-update]
+  ansible.builtin.package:
+    name: tzdata
+    state: present
+    install_recommends: false
+  register: timezone_info
+  notify:
+    - timezone add
+    - mysql restart
+
+- name: Delete .my.conf
+  ansible.builtin.file:
+    path: /root/.my.cnf
+    state: absent

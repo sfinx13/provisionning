@@ -1,0 +1,12 @@
+---
+
+- name: Update user
+  hosts: all
+  remote_user: root
+  tasks:
+     - name: "Add {{ username }} appending the group"
+       ansible.builtin.user:
+          name: "{{ username }}"
+          groups: www-data
+       vars:
+          username: jdoe
