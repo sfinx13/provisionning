@@ -25,38 +25,38 @@ $ cd ansible
 $ ./play.sh
 ```
 
-## Main modules used
+## Main ansible modules used
 
-### Module d'installation
+### Install modules
 - [apt_key](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html)
 - [apt_repository](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_repository_module.html)
 - [package](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html)
 
-### Modules de gestion des utilisateurs
+### User management moduless
 - [user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
 - [group](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html)
 
-### Modules de script
+### Scripting modules
 - [command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
 - [script](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html)
 - [shell](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html)
 
-### Module gestion de fichiers
+### File management modules
 - [file](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html)
 - [lininfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lininfile_module.html)
 - [blockinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html)
 - [template](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html)
 
-### Modules gestions des services
+### Service management modules
 - [service](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html)
 
-### Autre modules
-- [set_fact](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/set_fact_module.html)
-
-### Module gestion locales
+### Local management module
 - [community.general.locale_gen](https://docs.ansible.com/ansible/latest/collections/community/general/locale_gen_module.html)
 - [community.general.timezone](https://docs.ansible.com/ansible/latest/collections/community/general/timezone_module.html)
 
-### Modules MySQL
+### MySQL modules
 - [community.mysql.mysql_user](https://docs.ansible.com/ansible/latest/collections/community/mysql/mysql_user_module.html)
 - [community.mysql.mysql_db](https://docs.ansible.com/ansible/latest/collections/community/mysql/mysql_db_module.html)
+
+### Other modules
+- [set_fact](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/set_fact_module.html)
