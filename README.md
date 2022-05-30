@@ -32,7 +32,7 @@ $ ./play.sh
 - [apt_repository](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_repository_module.html)
 - [package](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html)
 
-### User management moduless
+### User management modules
 - [user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
 - [group](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html)
 
