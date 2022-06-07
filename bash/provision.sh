@@ -59,7 +59,7 @@ php-imagick php-memcached php-redis php-xdebug php-dev
 # PHP 8.1
 apt-get install -y --allow-change-held-packages \
 php8.1 php8.1-bcmath php8.1-bz2 php8.1-cgi php8.1-cli php8.1-common php8.1-curl php8.1-dba php8.1-dev \
-php8.1-enchant php8.1-fpm php8.1-gd php8.1-gmp php8.1-imap php8.1-interbase php8.1-intl php8.1-json php8.1-ldap \
+php8.1-enchant php8.1-fpm php8.1-gd php8.1-gmp php8.1-imap php8.1-interbase php8.1-intl php8.1-ldap \
 php8.1-mbstring php8.1-mysql php8.1-odbc php8.1-opcache php8.1-pgsql php8.1-phpdbg php8.1-pspell php8.1-readline \
 php8.1-snmp php8.1-soap php8.1-sqlite3 php8.1-sybase php8.1-tidy php8.1-xml php8.1-xmlrpc php8.1-xsl php8.1-zip
 
@@ -171,8 +171,10 @@ apt-get install -y redis-server memcached
 systemctl enable redis-server
 service redis-server start
 
-mkdir -p /run/php/
-touch /run/php/php8.1-fpm.sock
-
 # Add Composer Global Bin To Path
 printf "\nPATH=\"$(sudo su - $username -c 'composer config -g home 2>/dev/null')/vendor/bin:\$PATH\"\n" | tee -a /home/$username/.profile
+
+# Add symfony cli
+echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sources.list.d/symfony-cli.list
+sudo apt update
+sudo apt install -y symfony-cli
