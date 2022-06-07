@@ -176,5 +176,8 @@ printf "\nPATH=\"$(sudo su - $username -c 'composer config -g home 2>/dev/null')
 
 # Add symfony cli
 echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sources.list.d/symfony-cli.list
-sudo apt update
-sudo apt install -y symfony-cli
+apt update
+apt install -y symfony-cli
+
+# Install Sshpass For Ansible To Support Ssh Passwords
+# apt get install sshpass
