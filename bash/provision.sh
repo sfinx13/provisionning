@@ -179,5 +179,9 @@ echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sou
 apt update
 apt install -y symfony-cli
 
+# Useful to install local Certificate Authority certificate
+# Generating a default certificate for HTTPS support
+apt install libnss3-tools
+
 # Install Sshpass For Ansible To Support Ssh Passwords
 apt get install sshpass
